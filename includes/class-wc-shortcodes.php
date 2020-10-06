@@ -56,15 +56,17 @@ class WC_Shortcodes {
 	 *
 	 * @return string
 	 */
-	public static function shortcode_wrapper(
-		$function,
-		$atts = array(),
+	public static function shortcode_wrapper( $function, $atts = array() ) {
+		
 		$wrapper = array(
 			'class'  => 'woocommerce',
 			'before' => null,
 			'after'  => null,
-		)
-	) {
+		);
+		
+		// merge default wrapper with customer attributes
+		$wrapper = wp_parse_args( $atts, $wrapper );
+		
 		ob_start();
 
 		// @codingStandardsIgnoreStart
